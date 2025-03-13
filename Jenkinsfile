@@ -4,26 +4,22 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                build 'PES1UG22CS902-1'
+                sh 'g++ main.cpp -o output'
                 echo 'Build Stage Successful'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh './output'
                 echo 'Test Stage successful'
-                post{
-                  always{
-                    junit 'target/surefire-reports/*.xml'
-                  }
-                }
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'mvn deploy'
+               
                 echo 'Deployment Successful'
             }
         }
