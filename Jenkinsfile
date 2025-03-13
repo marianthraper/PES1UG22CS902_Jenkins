@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('Build') {
             steps {
@@ -9,22 +8,18 @@ pipeline {
                 echo 'Build Stage Successful'
             }
         }
-
         stage('Test') {
             steps {
                 sh './opt'
                 echo 'Test Stage successful'
             }
         }
-
         stage('Deploy') {
             steps {
-               
                 echo 'Deployment Successful'
             }
         }
     }
-
     post {
         failure {
             echo "Pipeline failed"
